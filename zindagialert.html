@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZindagiAlert - NayiUmeed</title>
+    <link rel="icon" type="image/png" href="images/ChatGPT Image Apr 23, 2025, 02_45_05 AM.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .report-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .report-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .camera-container {
+            width: 100%;
+            height: 400px;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        #videoElement {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .camera-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .camera-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .camera-btn:hover {
+            background: #ffd900;
+        }
+
+        .camera-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .captured-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .location-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .location-info p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #ffd900;
+        }
+
+        .status-message {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .status-message.success {
+            background: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        .status-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/ChatGPT Image Apr 23, 2025, 02_45_05 AM.png" alt="NayiUmeed Logo" style="height: 60px; width: auto;">
+                <span class="logo-text">NayiUmeed</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#mission">Mission</a>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#how-it-works">How It Works</a>
+                <a href="index.html#join-us">Join Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="feature-hero">
+        <div class="container">
+            <h1>ZindagiAlert</h1>
+            <p class="tagline">StreetReporting for Beggars' Health & Needs</p>
+            <div class="feature-stats">
+                <div class="stat">
+                    <span class="number">10,000+</span>
+                    <span class="label">Lives Saved</span>
+                </div>
+                <div class="stat">
+                    <span class="number">24/7</span>
+                    <span class="label">Emergency Response</span>
+                </div>
+                <div class="stat">
+                    <span class="number">500+</span>
+                    <span class="label">Cities Covered</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Section -->
+    <section class="report-section">
+        <div class="container">
+            <div class="report-container">
+                <h2>Report a Person in Need</h2>
+                <p>Take a photo and provide details to help us assist someone in need.</p>
+
+                <div class="camera-container">
+                    <video id="videoElement" autoplay playsinline></video>
+                    <img id="capturedImage" class="captured-image" alt="Captured image">
+                </div>
+
+                <div class="camera-controls">
+                    <button id="startCamera" class="camera-btn">
+                        <i class="fas fa-camera"></i> Start Camera
+                    </button>
+                    <button id="capturePhoto" class="camera-btn" disabled>
+                        <i class="fas fa-camera"></i> Capture Photo
+                    </button>
+                    <button id="retakePhoto" class="camera-btn" disabled>
+                        <i class="fas fa-redo"></i> Retake
+                    </button>
+                </div>
+
+                <div class="location-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Location: <span id="locationText">Getting location...</span></p>
+                    <p><i class="fas fa-clock"></i> Time: <span id="timeText"></span></p>
+                </div>
+
+                <form id="reportForm">
+                    <div class="form-group">
+                        <label for="condition">Condition</label>
+                        <select id="condition" required>
+                            <option value="">Select condition</option>
+                            <option value="medical">Medical Emergency</option>
+                            <option value="food">Need Food</option>
+                            <option value="shelter">Need Shelter</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Additional Details</label>
+                        <textarea id="description" placeholder="Provide any additional information about the person's condition or needs"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" disabled>
+                        <i class="fas fa-paper-plane"></i> Submit Report
+                    </button>
+                </form>
+
+                <div id="statusMessage" class="status-message"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Toll-free: 1800-123-4567</p>
+                    <p>Email: support@nayiumeed.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Donate</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NayiUmeed. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Camera and location variables
+        let stream = null;
+        let capturedImage = null;
+        let userLocation = null;
+        let currentTime = null;
+
+        // DOM Elements
+        const videoElement = document.getElementById('videoElement');
+        const capturedImageElement = document.getElementById('capturedImage');
+        const startCameraBtn = document.getElementById('startCamera');
+        const capturePhotoBtn = document.getElementById('capturePhoto');
+        const retakePhotoBtn = document.getElementById('retakePhoto');
+        const locationText = document.getElementById('locationText');
+        const timeText = document.getElementById('timeText');
+        const reportForm = document.getElementById('reportForm');
+        const submitBtn = document.querySelector('.submit-btn');
+        const statusMessage = document.getElementById('statusMessage');
+
+        // Start camera
+        startCameraBtn.addEventListener('click', async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                videoElement.srcObject = stream;
+                startCameraBtn.disabled = true;
+                capturePhotoBtn.disabled = false;
+                capturedImageElement.style.display = 'none';
+                videoElement.style.display = 'block';
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+                statusMessage.textContent = 'Error accessing camera. Please check permissions.';
+                statusMessage.className = 'status-message error';
+            }
+        });
+
+        // Capture photo
+        capturePhotoBtn.addEventListener('click', () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            canvas.getContext('2d').drawImage(videoElement, 0, 0);
+            capturedImage = canvas.toDataURL('image/jpeg');
+            
+            capturedImageElement.src = capturedImage;
+            capturedImageElement.style.display = 'block';
+            videoElement.style.display = 'none';
+            
+            capturePhotoBtn.disabled = true;
+            retakePhotoBtn.disabled = false;
+            
+            // Enable submit button if we have location
+            if (userLocation) {
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Retake photo
+        retakePhotoBtn.addEventListener('click', () => {
+            capturedImageElement.style.display = 'none';
+            videoElement.style.display = 'block';
+            capturePhotoBtn.disabled = false;
+            retakePhotoBtn.disabled = true;
+            submitBtn.disabled = true;
+        });
+
+        // Get location
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        userLocation = {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        };
+                        
+                        // Get address using reverse geocoding
+                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLocation.latitude}&lon=${userLocation.longitude}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                const address = data.display_name;
+                                locationText.textContent = address;
+                                
+                                // Enable submit button if we have a photo
+                                if (capturedImage) {
+                                    submitBtn.disabled = false;
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error getting address:', error);
+                                locationText.textContent = `${userLocation.latitude}, ${userLocation.longitude}`;
+                            });
+                    },
+                    (error) => {
+                        console.error('Error getting location:', error);
+                        locationText.textContent = 'Location access denied';
+                    }
+                );
+            } else {
+                locationText.textContent = 'Geolocation not supported';
+            }
+        }
+
+        // Update time
+        function updateTime() {
+            currentTime = new Date();
+            timeText.textContent = currentTime.toLocaleString();
+        }
+
+        // Initialize
+        getLocation();
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Handle form submission
+        reportForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                image: capturedImage,
+                location: userLocation,
+                address: locationText.textContent,
+                time: currentTime,
+                condition: document.getElementById('condition').value,
+                description: document.getElementById('description').value
+            };
+
+            try {
+                console.log('Submitting report with data:', formData);
+                
+                // Send data to backend
+                const response = await fetch('http://localhost:3001/api/reports', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                console.log('Response status:', response.status);
+                const result = await response.json();
+                console.log('Response data:', result);
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Failed to submit report');
+                }
+                
+                statusMessage.textContent = 'Report submitted successfully! Our team will respond shortly.';
+                statusMessage.className = 'status-message success';
+                
+                // Reset form
+                reportForm.reset();
+                capturedImage = null;
+                capturedImageElement.style.display = 'none';
+                videoElement.style.display = 'block';
+                startCameraBtn.disabled = false;
+                capturePhotoBtn.disabled = true;
+                retakePhotoBtn.disabled = true;
+                submitBtn.disabled = true;
+                
+                // Stop camera
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+            } catch (error) {
+                console.error('Error submitting report:', error);
+                statusMessage.textContent = `Error submitting report: ${error.message}. Please try again.`;
+                statusMessage.className = 'status-message error';
+            }
+        });
+    </script>
+</body>
+</html> 

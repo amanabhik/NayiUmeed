@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaamKiPehchaan - Professional Network | NayiUmeed</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .feature-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .profile-showcase {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 3px solid #007bff;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: #e9ecef;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .features-section {
+            padding: 4rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-box i {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        .testimonials {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .testimonial-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .testimonial-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cta-section {
+            background: #007bff;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-section .btn {
+            margin-top: 2rem;
+            background: white;
+            color: #007bff;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .cta-section .btn:hover {
+            background: #f8f9fa;
+            transform: scale(1.05);
+        }
+
+        /* Community Feed Styles */
+        .community-feed {
+            padding: 4rem 0;
+            background: #fff;
+        }
+
+        .feed-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .post-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .post-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .post-action-btn:hover {
+            background: #e9ecef;
+        }
+
+        .post-action-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .post-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .post-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .post-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .post-meta {
+            flex: 1;
+        }
+
+        .post-author {
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .post-time {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .post-content {
+            margin-bottom: 1rem;
+        }
+
+        .post-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .post-achievement {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #007bff;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .action-btn:hover {
+            color: #007bff;
+        }
+
+        .action-btn i {
+            font-size: 1.2rem;
+        }
+
+        .comment-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .comment {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .comment-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 0.8rem;
+            border-radius: 5px;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .comment-text {
+            margin: 0;
+        }
+
+        .comment-input {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .comment-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .send-comment {
+            padding: 0.8rem 1.5rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .send-comment:hover {
+            background: #0056b3;
+        }
+
+        /* Login Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            margin: 10% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+
+        .otp-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .otp-input input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .verify-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .verify-btn:hover {
+            background: #0056b3;
+        }
+
+        .resend-otp {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .resend-otp a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .resend-otp a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-required {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .auth-required h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .auth-required p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Add new styles for profile icon and posts */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .profile-name {
+            color: white;
+            font-weight: 500;
+        }
+
+        .post-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-avatar {
+            width: 50px;
+            height: 50px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .post-meta {
+            flex: 1;
+        }
+
+        .post-author {
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .post-time {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .post-content {
+            margin-bottom: 1rem;
+        }
+
+        /* Add logout button styles */
+        .logout-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-left: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            color: #ff4444;
+        }
+
+        .logout-btn i {
+            margin-right: 0.5rem;
+        }
+
+        /* Add styles for post types */
+        .post-type-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-type-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .post-type-btn.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .post-type-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .post-preview {
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .post-preview img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-form {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .achievement-form input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .question-form {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .question-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .question-tag {
+            background: #e9ecef;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .question-tag.selected {
+            background: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Join Our Community</h2>
+            <p>Please verify your details to start sharing</p>
+            
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="field">Field of Study/Work</label>
+                    <select id="field" name="field" required>
+                        <option value="">Select your field</option>
+                        <option value="construction">Construction</option>
+                        <option value="cooking">Professional Cooking</option>
+                        <option value="driving">Commercial Driving</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number">
+                </div>
+                <button type="submit" class="verify-btn">Send OTP</button>
+            </form>
+
+            <form id="otpForm" style="display: none;">
+                <div class="form-group">
+                    <label>Enter OTP</label>
+                    <div class="otp-input">
+                        <input type="text" maxlength="1" pattern="[0-9]">
+                        <input type="text" maxlength="1" pattern="[0-9]">
+                        <input type="text" maxlength="1" pattern="[0-9]">
+                        <input type="text" maxlength="1" pattern="[0-9]">
+                        <input type="text" maxlength="1" pattern="[0-9]">
+                        <input type="text" maxlength="1" pattern="[0-9]">
+                    </div>
+                </div>
+                <button type="submit" class="verify-btn">Verify OTP</button>
+                <div class="resend-otp">
+                    <a href="#" id="resendOtp">Resend OTP</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/ChatGPT Image Apr 23, 2025, 02_45_05 AM.png" alt="NayiUmeed Logo" style="height: 60px; width: auto;">
+                <span class="logo-text">NayiUmeed</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#how-it-works">How It Works</a>
+                <a href="index.html#join-us">Join Us</a>
+            </div>
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <div class="profile-icon" id="profileIcon"></div>
+                <span class="profile-name" id="profileName"></span>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="feature-hero">
+        <div class="container">
+            <h1>KaamKiPehchaan</h1>
+            <p class="tagline">Building Professional Networks for the Underrated</p>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <div class="container">
+            <h2>Platform Features</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fas fa-id-card"></i>
+                    <h3>Digital Profile</h3>
+                    <p>Create your professional identity with verified work history</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-star"></i>
+                    <h3>Skill Endorsements</h3>
+                    <p>Get recognized for your expertise by employers</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-comments"></i>
+                    <h3>Direct Communication</h3>
+                    <p>Connect directly with potential employers</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Work Certificates</h3>
+                    <p>Earn digital certificates for completed jobs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Feed Section -->
+    <section class="community-feed">
+        <div class="container">
+            <h2>Community Feed</h2>
+            <div class="feed-container">
+                <!-- Authentication Required Message -->
+                <div class="auth-required" id="authRequired">
+                    <h3>Join Our Community</h3>
+                    <p>Please verify your details to start sharing and interacting with other professionals</p>
+                    <button class="btn primary" onclick="showLoginModal()">Get Started</button>
+                </div>
+
+                <!-- Post Form (Hidden by default) -->
+                <div class="post-form" id="postForm" style="display: none;">
+                    <div class="post-type-selector">
+                        <button class="post-type-btn active" data-type="text">
+                            <i class="fas fa-pen"></i> Text
+                        </button>
+                        <button class="post-type-btn" data-type="photo">
+                            <i class="fas fa-image"></i> Photo
+                        </button>
+                        <button class="post-type-btn" data-type="achievement">
+                            <i class="fas fa-trophy"></i> Achievement
+                        </button>
+                        <button class="post-type-btn" data-type="question">
+                            <i class="fas fa-question-circle"></i> Question
+                        </button>
+                    </div>
+
+                    <textarea class="post-input" placeholder="Share your thoughts..."></textarea>
+
+                    <!-- Photo Upload Preview -->
+                    <div class="post-preview" id="photoPreview">
+                        <img id="previewImage" src="#" alt="Preview">
+                    </div>
+
+                    <!-- Achievement Form -->
+                    <div class="achievement-form" id="achievementForm">
+                        <input type="text" placeholder="Achievement Title" id="achievementTitle">
+                        <input type="text" placeholder="Organization/Company" id="achievementOrg">
+                    </div>
+
+                    <!-- Question Form -->
+                    <div class="question-form" id="questionForm">
+                        <div class="question-tags">
+                            <span class="question-tag" data-tag="construction">Construction</span>
+                            <span class="question-tag" data-tag="cooking">Cooking</span>
+                            <span class="question-tag" data-tag="driving">Driving</span>
+                            <span class="question-tag" data-tag="career">Career</span>
+                            <span class="question-tag" data-tag="training">Training</span>
+                        </div>
+                    </div>
+
+                    <button class="btn primary" id="postButton">Post</button>
+                </div>
+
+                <!-- Feed Posts (Hidden by default) -->
+                <div class="post-feed" id="postFeed" style="display: none;">
+                    <!-- Posts will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Success Stories</h2>
+            <div class="testimonial-card">
+                <p>"KaamKiPehchaan helped me showcase my cooking skills and find a permanent position at a restaurant. Now I earn twice what I used to make."</p>
+                <div class="testimonial-meta">
+                    <div class="testimonial-image">
+                        <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Testimonial">
+                    </div>
+                    <div>
+                        <h4>Lakshmi Devi</h4>
+                        <p>Professional Cook</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Toll-free: 1800-123-4567</p>
+                    <p>Email: support@nayiumeed.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NayiUmeed. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize all DOM elements
+        const postTypeButtons = document.querySelectorAll('.post-type-btn');
+        const photoPreview = document.getElementById('photoPreview');
+        const previewImage = document.getElementById('previewImage');
+        const achievementForm = document.getElementById('achievementForm');
+        const questionForm = document.getElementById('questionForm');
+        const postInput = document.querySelector('.post-input');
+        const postButton = document.querySelector('.post-form .btn');
+        const questionTags = document.querySelectorAll('.question-tag');
+        const getStartedBtn = document.querySelector('.auth-required .btn');
+        const loginModal = document.getElementById('loginModal');
+        const userProfile = document.getElementById('userProfile');
+        const profileIcon = document.getElementById('profileIcon');
+        const profileName = document.getElementById('profileName');
+        const authRequired = document.getElementById('authRequired');
+        const postForm = document.getElementById('postForm');
+        const postFeed = document.getElementById('postFeed');
+        const registrationForm = document.getElementById('registrationForm');
+        const otpForm = document.getElementById('otpForm');
+        const otpInputs = document.querySelectorAll('.otp-input input');
+        const closeBtn = document.querySelector('.close-modal');
+        const resendOtpBtn = document.getElementById('resendOtp');
+
+        // Initialize state variables
+        let currentUser = null;
+        let selectedPostType = 'text';
+        let selectedTags = [];
+
+        // Function to show login modal
+        function showLoginModal() {
+            loginModal.style.display = 'block';
+        }
+
+        // Function to hide login modal
+        function hideLoginModal() {
+            loginModal.style.display = 'none';
+        }
+
+        // Add click handler for Get Started button
+        if (getStartedBtn) {
+            getStartedBtn.addEventListener('click', showLoginModal);
+        }
+
+        // Add click handler for close button
+        if (closeBtn) {
+            closeBtn.onclick = hideLoginModal;
+        }
+
+        // Handle window click outside modal
+        window.onclick = function(event) {
+            if (event.target == loginModal) {
+                hideLoginModal();
+            }
+        }
+
+        // Handle OTP input
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', function() {
+                if (this.value.length === 1) {
+                    if (index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                }
+            });
+
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && !this.value && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Handle registration form submission
+        registrationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const field = document.getElementById('field').value;
+            const mobile = document.getElementById('mobile').value;
+
+            // Generate a random 6-digit OTP
+            const otp = Math.floor(100000 + Math.random() * 900000);
+            
+            // Show OTP in alert
+            alert(`Your OTP is: ${otp}`);
+            
+            // Show OTP form
+            registrationForm.style.display = 'none';
+            otpForm.style.display = 'block';
+        });
+
+        // Handle OTP form submission
+        otpForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const otp = Array.from(otpInputs).map(input => input.value).join('');
+            
+            // On successful verification
+            const user = {
+                name: document.getElementById('name').value,
+                field: document.getElementById('field').value,
+                mobile: document.getElementById('mobile').value
+            };
+            
+            saveUserData(user);
+            hideLoginModal();
+            authRequired.style.display = 'none';
+            postForm.style.display = 'block';
+            postFeed.style.display = 'block';
+            displayPosts();
+        });
+
+        // Handle resend OTP
+        resendOtpBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Here you would typically request a new OTP from your server
+            console.log('Resending OTP...');
+        });
+
+        // User session handling
+        function saveUserData(user) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            currentUser = user;
+            updateUserProfile();
+        }
+
+        // Function to update user profile display
+        function updateUserProfile() {
+            if (currentUser) {
+                userProfile.style.display = 'flex';
+                profileIcon.textContent = getInitials(currentUser.name);
+                profileName.textContent = currentUser.name;
+            } else {
+                userProfile.style.display = 'none';
+            }
+        }
+
+        // Function to handle logout
+        function handleLogout() {
+            // Clear user data from localStorage
+            localStorage.removeItem('currentUser');
+            currentUser = null;
+            
+            // Reset UI
+            updateUserProfile();
+            authRequired.style.display = 'block';
+            postForm.style.display = 'none';
+            postFeed.style.display = 'none';
+            
+            // Show success message
+            alert('You have been successfully logged out.');
+        }
+
+        // Handle post type selection
+        postTypeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active state
+                postTypeButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update selected type
+                selectedPostType = this.dataset.type;
+                
+                // Update placeholder text
+                updatePlaceholder();
+                
+                // Show/hide relevant sections
+                photoPreview.style.display = selectedPostType === 'photo' ? 'block' : 'none';
+                achievementForm.style.display = selectedPostType === 'achievement' ? 'block' : 'none';
+                questionForm.style.display = selectedPostType === 'question' ? 'block' : 'none';
+            });
+        });
+
+        // Update placeholder text based on post type
+        function updatePlaceholder() {
+            const placeholders = {
+                text: 'Share your thoughts...',
+                photo: 'Add a caption...',
+                achievement: 'Describe your achievement...',
+                question: 'What would you like to ask?'
+            };
+            postInput.placeholder = placeholders[selectedPostType];
+        }
+
+        // Handle photo upload preview
+        const photoInput = document.createElement('input');
+        photoInput.type = 'file';
+        photoInput.accept = 'image/*';
+        photoInput.style.display = 'none';
+        document.body.appendChild(photoInput);
+
+        photoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Handle question tag selection
+        questionTags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                const tagValue = this.dataset.tag;
+                if (this.classList.contains('selected')) {
+                    selectedTags.push(tagValue);
+                } else {
+                    selectedTags = selectedTags.filter(t => t !== tagValue);
+                }
+            });
+        });
+
+        // Modified savePost function to handle different post types
+        function savePost(content) {
+            const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+            const newPost = {
+                id: Date.now(),
+                author: currentUser.name,
+                type: selectedPostType,
+                content: content,
+                timestamp: new Date().toISOString(),
+                likes: 0,
+                comments: []
+            };
+
+            // Add type-specific data
+            if (selectedPostType === 'photo' && previewImage.src !== '#') {
+                newPost.photo = previewImage.src;
+            } else if (selectedPostType === 'achievement') {
+                newPost.achievement = {
+                    title: document.getElementById('achievementTitle').value,
+                    organization: document.getElementById('achievementOrg').value
+                };
+            } else if (selectedPostType === 'question') {
+                newPost.tags = selectedTags;
+            }
+
+            posts.unshift(newPost);
+            localStorage.setItem('posts', JSON.stringify(posts));
+            return newPost;
+        }
+
+        // Modified displayPosts function to show different post types
+        function displayPosts() {
+            const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+            const postFeed = document.getElementById('postFeed');
+            postFeed.innerHTML = '';
+
+            posts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'post-card';
+                
+                let postContent = '';
+                if (post.type === 'photo' && post.photo) {
+                    postContent = `
+                        <img src="${post.photo}" alt="Post image" style="max-width: 100%; margin-bottom: 1rem;">
+                        <p>${post.content}</p>
+                    `;
+                } else if (post.type === 'achievement' && post.achievement) {
+                    postContent = `
+                        <div class="achievement-badge">
+                            <i class="fas fa-trophy"></i>
+                            <span>${post.achievement.title}</span>
+                        </div>
+                        <p>${post.achievement.organization}</p>
+                        <p>${post.content}</p>
+                    `;
+                } else if (post.type === 'question' && post.tags) {
+                    postContent = `
+                        <p>${post.content}</p>
+                        <div class="question-tags">
+                            ${post.tags.map(tag => `<span class="question-tag">${tag}</span>`).join('')}
+                        </div>
+                    `;
+                } else {
+                    postContent = `<p>${post.content}</p>`;
+                }
+
+                postElement.innerHTML = `
+                    <div class="post-header">
+                        <div class="post-avatar">${getInitials(post.author)}</div>
+                        <div class="post-meta">
+                            <h3 class="post-author">${post.author}</h3>
+                            <p class="post-time">${new Date(post.timestamp).toLocaleString()}</p>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        ${postContent}
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn" onclick="handleLike(${post.id})">
+                            <i class="fas fa-heart"></i> Like (${post.likes})
+                        </button>
+                        <button class="action-btn" onclick="handleComment(${post.id})">
+                            <i class="fas fa-comment"></i> Comment
+                        </button>
+                    </div>
+                `;
+                postFeed.appendChild(postElement);
+            });
+        }
+
+        // Handle post button click
+        postButton.addEventListener('click', function() {
+            const content = postInput.value.trim();
+            if (content) {
+                if (selectedPostType === 'photo' && previewImage.src === '#') {
+                    alert('Please select a photo first');
+                    return;
+                }
+                savePost(content);
+                postInput.value = '';
+                previewImage.src = '#';
+                photoPreview.style.display = 'none';
+                document.getElementById('achievementTitle').value = '';
+                document.getElementById('achievementOrg').value = '';
+                selectedTags = [];
+                questionTags.forEach(tag => tag.classList.remove('selected'));
+                displayPosts();
+            }
+        });
+
+        // Add click handler for photo upload
+        document.querySelector('[data-type="photo"]').addEventListener('click', function() {
+            photoInput.click();
+        });
+
+        // Handle like functionality
+        function handleLike(postId) {
+            const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+            const postIndex = posts.findIndex(post => post.id === postId);
+            if (postIndex !== -1) {
+                posts[postIndex].likes += 1;
+                localStorage.setItem('posts', JSON.stringify(posts));
+                displayPosts();
+            }
+        }
+
+        // Handle comment functionality
+        function handleComment(postId) {
+            const comment = prompt('Enter your comment:');
+            if (comment) {
+                const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+                const postIndex = posts.findIndex(post => post.id === postId);
+                if (postIndex !== -1) {
+                    posts[postIndex].comments.push({
+                        author: currentUser.name,
+                        content: comment,
+                        timestamp: new Date().toISOString()
+                    });
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                    displayPosts();
+                }
+            }
+        }
+
+        // Check for existing user on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateUserProfile();
+                authRequired.style.display = 'none';
+                postForm.style.display = 'block';
+                postFeed.style.display = 'block';
+                displayPosts();
+            }
+        });
+
+        // Function to get initials from name
+        function getInitials(name) {
+            return name.split(' ').map(word => word[0]).join('').toUpperCase();
+        }
+    </script>
+</body>
+</html> 

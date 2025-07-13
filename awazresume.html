@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AwazResume - NayiUmeed</title>
+    <link rel="icon" type="image/png" href="/images/ChatGPT Image Apr 23, 2025, 02_45_05 AM.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .resume-container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .voice-input-section {
+            margin-bottom: 2rem;
+        }
+
+        .record-btn {
+            background: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .record-btn:hover {
+            background: #ffd900;
+            transform: translateY(-2px);
+        }
+
+        .record-btn.recording {
+            background: #dc3545;
+            animation: pulse 1.5s infinite;
+        }
+
+        .transcript {
+            margin: 1rem 0;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 100px;
+        }
+
+        .translated-text {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            min-height: 100px;
+        }
+
+        .resume-preview {
+            margin-top: 2rem;
+            padding: 2rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+        }
+
+        .download-btn {
+            background: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #ffd900;
+            transform: translateY(-2px);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .instructions ol {
+            margin-left: 1rem;
+        }
+
+        .instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .section h3 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .section-btn {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .section-btn.recording {
+            background: #dc3545;
+        }
+
+        .section.completed {
+            border-color: var(--primary-color);
+            background: #fff8e1;
+        }
+
+        .section.completed h3::after {
+            content: " ✓";
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/ChatGPT Image Apr 23, 2025, 02_45_05 AM.png" alt="NayiUmeed Logo" style="height: 60px; width: auto;">
+                <span class="logo-text">NayiUmeed</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#mission">Mission</a>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#how-it-works">How It Works</a>
+                <a href="index.html#join-us">Join Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="feature-hero">
+        <div class="container">
+            <h1>AwazResume</h1>
+            <p class="tagline">Voice-Based Resume Creation</p>
+            <div class="feature-stats">
+                <div class="stat">
+                    <span class="number">50,000+</span>
+                    <span class="label">Resumes Created</span>
+                </div>
+                <div class="stat">
+                    <span class="number">15+</span>
+                    <span class="label">Languages Supported</span>
+                </div>
+                <div class="stat">
+                    <span class="number">80%</span>
+                    <span class="label">Job Success Rate</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Details -->
+    <section class="feature-details">
+        <div class="container">
+            <div class="feature-content">
+                <div class="feature-description">
+                    <h2>How AwazResume Works</h2>
+                    <p>AwazResume helps individuals create professional resumes using just their voice, making it accessible to everyone regardless of literacy level.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Voice-to-text resume creation</li>
+                        <li><i class="fas fa-check-circle"></i> Multiple language support</li>
+                        <li><i class="fas fa-check-circle"></i> Professional template selection</li>
+                        <li><i class="fas fa-check-circle"></i> Skills and experience highlighting</li>
+                    </ul>
+                </div>
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="Voice Resume Creation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Creation Interface -->
+    <section class="resume-creation">
+        <div class="container">
+            <div class="resume-container">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--text-color);">Create Your Resume</h2>
+                
+                <div class="instructions">
+                    <h3>How to create your resume:</h3>
+                    <ol>
+                        <li>Click on any section below to start recording</li>
+                        <li>Speak your details in Hindi</li>
+                        <li>Click "Stop Recording" when finished</li>
+                        <li>Review the translated English text</li>
+                        <li>Move to the next section</li>
+                    </ol>
+                </div>
+
+                <div class="resume-sections">
+                    <div class="section" id="personalInfoSection">
+                        <h3>Personal Information</h3>
+                        <button class="record-btn section-btn" data-section="personalInfo">
+                            <i class="fas fa-microphone"></i>
+                            Record Personal Information
+                        </button>
+                        <div class="transcript">
+                            <h4>Your Hindi Input:</h4>
+                            <p class="section-transcript">Speak your name, email, and phone number...</p>
+                        </div>
+                        <div class="translated-text">
+                            <h4>Translated English Text:</h4>
+                            <p class="section-translated">Translated text will appear here...</p>
+                        </div>
+                    </div>
+
+                    <div class="section" id="summarySection">
+                        <h3>Professional Summary</h3>
+                        <button class="record-btn section-btn" data-section="summary">
+                            <i class="fas fa-microphone"></i>
+                            Record Professional Summary
+                        </button>
+                        <div class="transcript">
+                            <h4>Your Hindi Input:</h4>
+                            <p class="section-transcript">Describe your professional background and goals...</p>
+                        </div>
+                        <div class="translated-text">
+                            <h4>Translated English Text:</h4>
+                            <p class="section-translated">Translated text will appear here...</p>
+                        </div>
+                    </div>
+
+                    <div class="section" id="educationSection">
+                        <h3>Education</h3>
+                        <button class="record-btn section-btn" data-section="education">
+                            <i class="fas fa-microphone"></i>
+                            Record Education Details
+                        </button>
+                        <div class="transcript">
+                            <h4>Your Hindi Input:</h4>
+                            <p class="section-transcript">List your educational qualifications...</p>
+                        </div>
+                        <div class="translated-text">
+                            <h4>Translated English Text:</h4>
+                            <p class="section-translated">Translated text will appear here...</p>
+                        </div>
+                    </div>
+
+                    <div class="section" id="experienceSection">
+                        <h3>Work Experience</h3>
+                        <button class="record-btn section-btn" data-section="experience">
+                            <i class="fas fa-microphone"></i>
+                            Record Work Experience
+                        </button>
+                        <div class="transcript">
+                            <h4>Your Hindi Input:</h4>
+                            <p class="section-transcript">Describe your work experience...</p>
+                        </div>
+                        <div class="translated-text">
+                            <h4>Translated English Text:</h4>
+                            <p class="section-translated">Translated text will appear here...</p>
+                        </div>
+                    </div>
+
+                    <div class="section" id="skillsSection">
+                        <h3>Skills</h3>
+                        <button class="record-btn section-btn" data-section="skills">
+                            <i class="fas fa-microphone"></i>
+                            Record Skills
+                        </button>
+                        <div class="transcript">
+                            <h4>Your Hindi Input:</h4>
+                            <p class="section-transcript">List your skills and abilities...</p>
+                        </div>
+                        <div class="translated-text">
+                            <h4>Translated English Text:</h4>
+                            <p class="section-translated">Translated text will appear here...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-preview">
+                    <h3>Resume Preview</h3>
+                    <div id="resumeContent">
+                        <!-- Resume content will be dynamically inserted here -->
+                    </div>
+                    <button id="downloadBtn" class="download-btn" disabled>
+                        <i class="fas fa-download"></i>
+                        Download PDF Resume
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="feature-cta">
+        <div class="container">
+            <h2>Create Your Resume Today</h2>
+            <p>Start speaking and let our AI create your professional resume in minutes.</p>
+            <div class="cta-buttons">
+                <button class="btn primary">Start Recording</button>
+                <button class="btn secondary">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Toll-free: 1800-123-4567</p>
+                    <p>Email: support@nayiumeed.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Donate</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NayiUmeed. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="translate.js"></script>
+    <script>
+        // Voice recognition setup
+        let recognition;
+        let isRecording = false;
+
+        // Initialize speech recognition
+        if ('webkitSpeechRecognition' in window) {
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = 'hi-IN'; // Hindi language
+
+            recognition.onstart = function() {
+                console.log('Speech recognition started');
+                isRecording = true;
+            };
+
+            recognition.onend = function() {
+                console.log('Speech recognition ended');
+                isRecording = false;
+                // Reset all recording buttons
+                document.querySelectorAll('.section-btn').forEach(btn => {
+                    btn.classList.remove('recording');
+                    const section = btn.dataset.section;
+                    btn.innerHTML = `<i class="fas fa-microphone"></i> Record ${section.charAt(0).toUpperCase() + section.slice(1)}`;
+                });
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+                isRecording = false;
+                // Reset all recording buttons
+                document.querySelectorAll('.section-btn').forEach(btn => {
+                    btn.classList.remove('recording');
+                    const section = btn.dataset.section;
+                    btn.innerHTML = `<i class="fas fa-microphone"></i> Record ${section.charAt(0).toUpperCase() + section.slice(1)}`;
+                });
+                
+                let errorMessage = 'Error: ';
+                if (event.error === 'no-speech') {
+                    errorMessage = 'No speech detected. Please try speaking again.';
+                } else if (event.error === 'audio-capture') {
+                    errorMessage = 'No microphone detected. Please check your microphone settings.';
+                } else if (event.error === 'not-allowed') {
+                    errorMessage = 'Microphone access denied. Please allow microphone access in your browser settings.';
+                } else {
+                    errorMessage += event.error;
+                }
+                
+                // Show error in the active section
+                const activeSection = document.querySelector('.section-btn.recording');
+                if (activeSection) {
+                    const sectionElement = activeSection.closest('.section');
+                    const transcriptElement = sectionElement.querySelector('.section-transcript');
+                    transcriptElement.textContent = errorMessage;
+                }
+            };
+
+            recognition.onresult = async function(event) {
+                const activeSection = document.querySelector('.section-btn.recording');
+                if (!activeSection) return;
+
+                const section = activeSection.dataset.section;
+                const sectionElement = activeSection.closest('.section');
+                const transcriptElement = sectionElement.querySelector('.section-transcript');
+                const translatedElement = sectionElement.querySelector('.section-translated');
+
+                let transcript = '';
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    if (event.results[i].isFinal) {
+                        transcript += event.results[i][0].transcript;
+                    }
+                }
+                
+                if (transcript) {
+                    transcriptElement.textContent = transcript;
+                    
+                    try {
+                        translatedElement.textContent = 'Translating...';
+                        const translated = await window.translateText(transcript);
+                        translatedElement.textContent = translated;
+                        
+                        // Update resume data based on section
+                        switch(section) {
+                            case 'personalInfo':
+                                // Parse personal information
+                                const lines = translated.split('\n');
+                                lines.forEach(line => {
+                                    if (line.toLowerCase().includes('name')) {
+                                        resumeData.personalInfo.name = line.split(':')[1]?.trim() || line;
+                                    } else if (line.toLowerCase().includes('email')) {
+                                        resumeData.personalInfo.email = line.split(':')[1]?.trim() || line;
+                                    } else if (line.toLowerCase().includes('phone')) {
+                                        resumeData.personalInfo.phone = line.split(':')[1]?.trim() || line;
+                                    }
+                                });
+                                break;
+                            case 'summary':
+                                resumeData.summary = translated;
+                                break;
+                            case 'education':
+                                resumeData.education = translated.split('\n').filter(line => line.trim());
+                                break;
+                            case 'experience':
+                                resumeData.experience = translated.split('\n').filter(line => line.trim());
+                                break;
+                            case 'skills':
+                                resumeData.skills = translated.split('\n').filter(line => line.trim());
+                                break;
+                        }
+
+                        // Mark section as completed
+                        sectionElement.classList.add('completed');
+                        
+                        // Update resume preview
+                        generateResumePreview();
+                        
+                        // Enable download button if we have at least some content
+                        if (resumeData.personalInfo.name || resumeData.summary || 
+                            resumeData.education.length || resumeData.experience.length || 
+                            resumeData.skills.length) {
+                            downloadBtn.disabled = false;
+                        }
+                    } catch (error) {
+                        console.error('Translation error:', error);
+                        translatedElement.textContent = 'Translation failed. Please try again.';
+                    }
+                }
+            };
+        } else {
+            // Show error message in all sections
+            document.querySelectorAll('.section-transcript').forEach(element => {
+                element.textContent = 'Speech recognition is not supported in your browser. Please use Chrome or Edge.';
+            });
+        }
+
+        // Handle section-based recording
+        document.querySelectorAll('.section-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                if (!recognition) {
+                    alert('Speech recognition is not supported in your browser. Please use Chrome or Edge.');
+                    return;
+                }
+
+                const section = this.dataset.section;
+                const sectionElement = this.closest('.section');
+                const transcriptElement = sectionElement.querySelector('.section-transcript');
+                const translatedElement = sectionElement.querySelector('.section-translated');
+
+                if (!isRecording) {
+                    // Stop any ongoing recording
+                    if (document.querySelector('.section-btn.recording')) {
+                        recognition.stop();
+                    }
+
+                    // Start new recording
+                    transcriptElement.textContent = 'Listening... Please speak in Hindi.';
+                    translatedElement.textContent = 'Waiting for input...';
+                    recognition.start();
+                    
+                    // Update button state
+                    this.classList.add('recording');
+                    this.innerHTML = '<i class="fas fa-stop"></i> Stop Recording';
+                } else {
+                    // Stop recording
+                    recognition.stop();
+                    this.classList.remove('recording');
+                    this.innerHTML = `<i class="fas fa-microphone"></i> Record ${section.charAt(0).toUpperCase() + section.slice(1)}`;
+                }
+            });
+        });
+
+        // Resume data structure
+        let resumeData = {
+            personalInfo: {
+                name: '',
+                email: '',
+                phone: ''
+            },
+            summary: '',
+            education: [],
+            experience: [],
+            skills: []
+        };
+
+        // Update resume preview generation
+        function generateResumePreview() {
+            let previewHTML = `
+                <div class="resume-section">
+                    <h4 style="margin-bottom: 0.5rem;">${resumeData.personalInfo.name || 'Your Name'}</h4>
+                    <p style="margin-top: 0;">${resumeData.personalInfo.email || ''} ${resumeData.personalInfo.phone ? '| ' + resumeData.personalInfo.phone : ''}</p>
+                </div>
+            `;
+
+            if (resumeData.summary) {
+                previewHTML += `
+                    <div class="resume-section">
+                        <h4 style="margin-bottom: 0.5rem;">Professional Summary</h4>
+                        <p style="margin-top: 0;">${resumeData.summary}</p>
+                    </div>
+                `;
+            }
+
+            if (resumeData.education.length > 0) {
+                previewHTML += `
+                    <div class="resume-section">
+                        <h4>Education</h4>
+                        <ul>
+                            ${resumeData.education.map(edu => `<li>${edu}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (resumeData.experience.length > 0) {
+                previewHTML += `
+                    <div class="resume-section">
+                        <h4>Experience</h4>
+                        <ul>
+                            ${resumeData.experience.map(exp => `<li>${exp}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (resumeData.skills.length > 0) {
+                previewHTML += `
+                    <div class="resume-section">
+                        <h4>Skills</h4>
+                        <ul>
+                            ${resumeData.skills.map(skill => `<li>${skill}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            resumeContent.innerHTML = previewHTML;
+        }
+
+        // Generate and download PDF
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Set default font
+            doc.setFont("helvetica");
+            
+            // Add name
+            doc.setFontSize(20);
+            doc.setFont("helvetica", "bold");
+            doc.text(resumeData.personalInfo.name || 'Your Name', 20, 20);
+            
+            // Add contact info
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            const contactInfo = [];
+            if (resumeData.personalInfo.email) contactInfo.push(resumeData.personalInfo.email);
+            if (resumeData.personalInfo.phone) contactInfo.push(resumeData.personalInfo.phone);
+            doc.text(contactInfo.join(' | '), 20, 30);
+            
+            // Add summary
+            if (resumeData.summary) {
+                doc.setFontSize(14);
+                doc.setFont("helvetica", "bold");
+                doc.text('Professional Summary', 20, 45);
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "normal");
+                
+                // Split the text into lines that fit within the page width
+                const summaryLines = doc.splitTextToSize(resumeData.summary, 170);
+                doc.text(summaryLines, 20, 55);
+            }
+            
+            // Add education
+            if (resumeData.education.length > 0) {
+                doc.setFontSize(14);
+                doc.setFont("helvetica", "bold");
+                doc.text('Education', 20, 80);
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "normal");
+                
+                let yPos = 90;
+                resumeData.education.forEach((edu, index) => {
+                    if (yPos > 250) { // Check if we need a new page
+                        doc.addPage();
+                        yPos = 20;
+                    }
+                    doc.text(edu, 20, yPos);
+                    yPos += 7;
+                });
+            }
+            
+            // Add experience
+            if (resumeData.experience.length > 0) {
+                doc.setFontSize(14);
+                doc.setFont("helvetica", "bold");
+                doc.text('Experience', 20, 120);
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "normal");
+                
+                let yPos = 130;
+                resumeData.experience.forEach((exp, index) => {
+                    if (yPos > 250) { // Check if we need a new page
+                        doc.addPage();
+                        yPos = 20;
+                    }
+                    doc.text(exp, 20, yPos);
+                    yPos += 7;
+                });
+            }
+            
+            // Add skills
+            if (resumeData.skills.length > 0) {
+                doc.setFontSize(14);
+                doc.setFont("helvetica", "bold");
+                doc.text('Skills', 20, 160);
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "normal");
+                
+                let yPos = 170;
+                resumeData.skills.forEach((skill, index) => {
+                    if (yPos > 250) { // Check if we need a new page
+                        doc.addPage();
+                        yPos = 20;
+                    }
+                    doc.text(skill, 20, yPos);
+                    yPos += 7;
+                });
+            }
+            
+            // Add NayiUmeed logo
+            const logo = new Image();
+            logo.src = 'images/ChatGPT Image Apr 23, 2025, 02_45_05 AM.png';
+            logo.onload = function() {
+                doc.addImage(logo, 'PNG', 160, 10, 30, 30);
+                // Save the PDF after the image is loaded
+                doc.save('resume.pdf');
+            };
+            logo.onerror = function() {
+                // If logo fails to load, save the PDF without it
+                doc.save('resume.pdf');
+            };
+        });
+    </script>
+</body>
+</html> 

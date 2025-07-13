@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ZindagiAlert | NayiUmeed</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Admin Navbar Styles */
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            color: var(--primary-color);
+            background: rgba(255, 193, 7, 0.1);
+        }
+
+        .navbar .nav-links a.active {
+            color: var(--primary-color);
+            background: rgba(255, 193, 7, 0.1);
+        }
+
+        .navbar .nav-links #logoutBtn {
+            background: #dc3545;
+            color: white;
+            padding: 0.5rem 1.5rem;
+        }
+
+        .navbar .nav-links #logoutBtn:hover {
+            background: #c82333;
+            color: white;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: #ffd900;
+        }
+
+        .dashboard {
+            display: none;
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .report-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .report-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .report-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-in_progress {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .status-resolved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .report-details {
+            margin-top: 1rem;
+        }
+
+        .report-details p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background 0.3s ease;
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-start {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-resolve {
+            background: #28a745;
+            color: white;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-links">
+                <a href="/admin-dashboard.html" class="active" id="reportsLink" style="display: none;">Reports</a>
+                <a href="#" id="logoutBtn" style="display: none;">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <div class="admin-container">
+        <div class="login-form" id="loginForm">
+            <h2>Admin Login</h2>
+            <form id="loginFormElement">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dashboard" id="dashboard">
+            <h2>ZindagiAlert Reports Dashboard</h2>
+            
+            <!-- Stats -->
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalReports">0</div>
+                    <div class="stat-label">Total Reports</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="pendingReports">0</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="inProgressReports">0</div>
+                    <div class="stat-label">In Progress</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="resolvedReports">0</div>
+                    <div class="stat-label">Resolved</div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="statusFilter">Status</label>
+                    <select id="statusFilter">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="resolved">Resolved</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="conditionFilter">Condition</label>
+                    <select id="conditionFilter">
+                        <option value="all">All Conditions</option>
+                        <option value="medical">Medical Emergency</option>
+                        <option value="food">Need Food</option>
+                        <option value="shelter">Need Shelter</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="dateFilter">Date</label>
+                    <select id="dateFilter">
+                        <option value="all">All Time</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Reports Grid -->
+            <div class="reports-grid" id="reportsGrid"></div>
+        </div>
+    </div>
+
+    <script>
+        // Admin credentials (in a real application, this would be handled by a secure backend)
+        const ADMIN_CREDENTIALS = {
+            username: 'admin',
+            password: 'admin123'
+        };
+
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const loginFormElement = document.getElementById('loginFormElement');
+        const dashboard = document.getElementById('dashboard');
+        const reportsGrid = document.getElementById('reportsGrid');
+        const statusFilter = document.getElementById('statusFilter');
+        const conditionFilter = document.getElementById('conditionFilter');
+        const dateFilter = document.getElementById('dateFilter');
+        const totalReports = document.getElementById('totalReports');
+        const pendingReports = document.getElementById('pendingReports');
+        const inProgressReports = document.getElementById('inProgressReports');
+        const resolvedReports = document.getElementById('resolvedReports');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const reportsLink = document.getElementById('reportsLink');
+
+        // Login handler
+        loginFormElement.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                loginForm.style.display = 'none';
+                dashboard.style.display = 'block';
+                reportsLink.style.display = 'block';
+                logoutBtn.style.display = 'block';
+                fetchReports();
+            } else {
+                alert('Invalid credentials');
+            }
+        });
+
+        // Logout handler
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.style.display = 'block';
+            dashboard.style.display = 'none';
+            reportsLink.style.display = 'none';
+            logoutBtn.style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        });
+
+        // Fetch reports from API
+        async function fetchReports() {
+            try {
+                const response = await fetch('/api/reports', {
+                    headers: {
+                        'Authorization': 'Basic ' + btoa('admin:admin123')
+                    }
+                });
+                const reports = await response.json();
+                console.log('Received reports:', reports); // Debug log
+                displayReports(reports);
+                updateStats(reports);
+            } catch (error) {
+                console.error('Error fetching reports:', error);
+                alert('Failed to fetch reports');
+            }
+        }
+
+        // Display reports in grid
+        function displayReports(reports) {
+            reportsGrid.innerHTML = '';
+            reports.forEach(report => {
+                console.log('Processing report:', report); // Debug log
+                
+                const reportCard = document.createElement('div');
+                reportCard.className = 'report-card';
+                
+                const statusClass = `status-${report.status.replace(' ', '_')}`;
+                
+                // Format location display
+                let locationDisplay = 'Location not available';
+                if (report.location) {
+                    console.log('Location data:', report.location); // Debug log
+                    if (typeof report.location === 'string') {
+                        locationDisplay = report.location;
+                    } else if (report.location.address) {
+                        locationDisplay = report.location.address;
+                    } else if (report.location.coordinates) {
+                        locationDisplay = `${report.location.coordinates.lat.toFixed(6)}, ${report.location.coordinates.lng.toFixed(6)}`;
+                    } else if (report.location.latitude && report.location.longitude) {
+                        locationDisplay = `${report.location.latitude.toFixed(6)}, ${report.location.longitude.toFixed(6)}`;
+                    }
+                }
+                
+                reportCard.innerHTML = `
+                    <img src="${report.image || '/images/default-report.jpg'}" alt="Report Image" class="report-image">
+                    <span class="report-status ${statusClass}">${report.status}</span>
+                    <div class="report-details">
+                        <p><i class="fas fa-map-marker-alt"></i> ${locationDisplay}</p>
+                        <p><i class="fas fa-clock"></i> ${new Date(report.time).toLocaleString()}</p>
+                        <p><i class="fas fa-info-circle"></i> ${report.condition}</p>
+                        <p>${report.description || 'No additional details'}</p>
+                    </div>
+                    <div class="action-buttons">
+                        ${report.status === 'pending' ? 
+                            `<button class="action-btn btn-start" onclick="updateStatus('${report._id}', 'in_progress')">
+                                Start Action
+                            </button>` : ''}
+                        ${report.status === 'in_progress' ? 
+                            `<button class="action-btn btn-resolve" onclick="updateStatus('${report._id}', 'resolved')">
+                                Mark Resolved
+                            </button>` : ''}
+                    </div>
+                `;
+                
+                reportsGrid.appendChild(reportCard);
+            });
+        }
+
+        // Update report status
+        async function updateStatus(reportId, newStatus) {
+            try {
+                const response = await fetch(`/api/reports/${reportId}/status`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Basic ' + btoa('admin:admin123')
+                    },
+                    body: JSON.stringify({ status: newStatus })
+                });
+
+                if (response.ok) {
+                    fetchReports(); // Refresh the reports
+                } else {
+                    throw new Error('Failed to update status');
+                }
+            } catch (error) {
+                console.error('Error updating status:', error);
+                alert('Failed to update status');
+            }
+        }
+
+        // Update statistics
+        function updateStats(reports) {
+            totalReports.textContent = reports.length;
+            pendingReports.textContent = reports.filter(r => r.status === 'pending').length;
+            inProgressReports.textContent = reports.filter(r => r.status === 'in_progress').length;
+            resolvedReports.textContent = reports.filter(r => r.status === 'resolved').length;
+        }
+
+        // Filter handlers
+        statusFilter.addEventListener('change', applyFilters);
+        conditionFilter.addEventListener('change', applyFilters);
+        dateFilter.addEventListener('change', applyFilters);
+
+        function applyFilters() {
+            // In a real application, this would filter the data on the backend
+            // For now, we'll just refresh the reports
+            fetchReports();
+        }
+    </script>
+</body>
+</html> 

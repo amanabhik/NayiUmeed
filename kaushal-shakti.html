@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaushalShakti - Skill Training & Development | NayiUmeed</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .feature-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .courses-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            margin: 1rem 0;
+        }
+
+        .benefits-section {
+            padding: 4rem 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .benefit-card i {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        .training-process {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+
+        .cta-section {
+            background: #007bff;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-section .btn {
+            margin-top: 2rem;
+            background: white;
+            color: #007bff;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .cta-section .btn:hover {
+            background: #f8f9fa;
+            transform: scale(1.05);
+        }
+
+        .modules-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .section-description {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .language-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid #007bff;
+            background: white;
+            color: #007bff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .module-tab {
+            display: none;
+        }
+
+        .module-tab.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .module-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .module-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .module-card p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .btn.secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn.secondary:hover {
+            background: #5a6268;
+        }
+
+        .module-resources {
+            margin: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .resource-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #007bff;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .resource-link:hover {
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+
+        .resource-link i {
+            color: #dc3545;
+        }
+
+        /* New styles for language resources */
+        .language-resources {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .resource-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-tab {
+            padding: 0.5rem 1rem;
+            border: 1px solid #007bff;
+            background: white;
+            color: #007bff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .resource-tab.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .resource-content {
+            position: relative;
+        }
+
+        .resource-pane {
+            display: none;
+            padding: 1rem;
+        }
+
+        .resource-pane.active {
+            display: block;
+        }
+
+        .resource-pane h5 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-pane ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+        }
+
+        .resource-pane ul li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .resource-pane ul li:before {
+            content: "•";
+            color: #007bff;
+            position: absolute;
+            left: 0;
+        }
+
+        .resource-pane a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .resource-pane a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/ChatGPT Image Apr 23, 2025, 02_45_05 AM.png" alt="NayiUmeed Logo" style="height: 60px; width: auto;">
+                <span class="logo-text">NayiUmeed</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#how-it-works">How It Works</a>
+                <a href="index.html#join-us">Join Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="feature-hero">
+        <div class="container">
+            <h1>KaushalShakti</h1>
+            <p class="tagline">Empowering Through Skills Training</p>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses-section">
+        <div class="container">
+            <h2>Featured Courses</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="images/constructionimage.jpeg" alt="Construction Training">
+                    </div>
+                    <div class="course-content">
+                        <h3>Construction Skills</h3>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 4 weeks</span>
+                            <span><i class="fas fa-users"></i> Beginner</span>
+                        </div>
+                        <p>Learn essential construction skills including masonry, carpentry, and safety protocols.</p>
+                        <div class="language-resources">
+                            <h4>Learning Resources:</h4>
+                            <div class="resource-tabs">
+                                <button class="resource-tab active" data-lang="construction-english">English</button>
+                                <button class="resource-tab" data-lang="construction-hindi">हिंदी</button>
+                                <button class="resource-tab" data-lang="construction-kannada">ಕನ್ನಡ</button>
+                            </div>
+                            <div class="resource-content">
+                                <div class="resource-pane active" id="construction-english">
+                                    <h5>Course Content:</h5>
+                                    <ul>
+                                        <li>Basic construction materials and tools</li>
+                                        <li>Masonry and bricklaying techniques</li>
+                                        <li>Safety protocols and regulations</li>
+                                        <li>Blueprint reading and measurements</li>
+                                    </ul>
+                                    <h5>YouTube Resources:</h5>
+                                    <ul>
+                                        <li><a href="https://www.youtube.com/watch?v=9U2JPfkQpsE" target="_blank">Basic Construction Skills - Complete Guide</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=8W9Q5Jd3WvY" target="_blank">Construction Safety Training</a></li>
+                                    </ul>
+                                </div>
+                                <div class="resource-pane" id="construction-hindi">
+                                    <h5>पाठ्यक्रम सामग्री:</h5>
+                                    <ul>
+                                        <li>मूल निर्माण सामग्री और उपकरण</li>
+                                        <li>ईंट बनाने की तकनीक</li>
+                                        <li>सुरक्षा प्रोटोकॉल और नियम</li>
+                                        <li>ब्लूप्रिंट पढ़ना और माप</li>
+                                    </ul>
+                                    <h5>यूट्यूब संसाधन:</h5>
+                                    <ul>
+                                        <li><a href="https://www.youtube.com/watch?v=YwJ6YXjQO1g" target="_blank">निर्माण कौशल की मूल बातें - पूर्ण गाइड</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=8W9Q5Jd3WvY" target="_blank">निर्माण सुरक्षा प्रशिक्षण</a></li>
+                                    </ul>
+                                </div>
+                                <div class="resource-pane" id="construction-kannada">
+                                    <h5>ಕೋರ್ಸ್ ವಿಷಯ:</h5>
+                                    <ul>
+                                        <li>ಮೂಲ ನಿರ್ಮಾಣ ಸಾಮಗ್ರಿಗಳು ಮತ್ತು ಉಪಕರಣಗಳು</li>
+                                        <li>ಇಟ್ಟಿಗೆ ಹಾಕುವ ತಂತ್ರಗಳು</li>
+                                        <li>ಸುರಕ್ಷತಾ ಪ್ರೋಟೋಕಾಲ್ಗಳು ಮತ್ತು ನಿಯಮಗಳು</li>
+                                        <li>ನೀಲನಕ್ಷೆ ಓದುವುದು ಮತ್ತು ಅಳತೆಗಳು</li>
+                                    </ul>
+                                    <h5>ಯೂಟ್ಯೂಬ್ ಸಂಪನ್ಮೂಲಗಳು:</h5>
+                                    <ul>
+                                        <li><a href="https://www.youtube.com/watch?v=9U2JPfkQpsE" target="_blank">ನಿರ್ಮಾಣ ಕೌಶಲ್ಯಗಳ ಮೂಲಭೂತಗಳು - ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=8W9Q5Jd3WvY" target="_blank">ನಿರ್ಮಾಣ ಸುರಕ್ಷತೆ ತರಬೇತಿ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="images/cooking training image.jpeg" alt="Cooking Training">
+                    </div>
+                    <div class="course-content">
+                        <h3>Professional Cooking</h3>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 6 weeks</span>
+                            <span><i class="fas fa-users"></i> All Levels</span>
+                        </div>
+                        <p>Master kitchen operations, food safety, and professional cooking techniques.</p>
+                        <div class="language-resources">
+                            <h4>Learning Resources:</h4>
+                            <div class="resource-tabs">
+                                <button class="resource-tab active" data-lang="cooking-english">English</button>
+                                <button class="resource-tab" data-lang="cooking-hindi">हिंदी</button>
+                                <button class="resource-tab" data-lang="cooking-kannada">ಕನ್ನಡ</button>
+                            </div>
+                            <div class="resource-content">
+                                <div class="resource-pane active" id="cooking-english">
+                                    <h5>Course Content:</h5>
+                                    <ul>
+                                        <li>Basic cooking techniques and knife skills</li>
+                                        <li>Food safety and hygiene standards</li>
+                                        <li>Menu planning and cost control</li>
+                                        <li>Professional kitchen management</li>
+                                    </ul>
+                                    <h5>YouTube Resources:</h5>
+                                    <ul>
+                                        <li><a href="https://www.youtube.com/watch?v=G-Fg7l7G1zw" target="_blank">Professional Cooking Techniques</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=93p3L8Rg0cI" target="_blank">Kitchen Safety and Hygiene</a></li>
+                                    </ul>
+                                </div>
+                                <div class="resource-pane" id="cooking-hindi">
+                                    <h5>पाठ्यक्रम सामग्री:</h5>
+                                    <ul>
+                                        <li>मूल खाना पकाने की तकनीक और चाकू कौशल</li>
+                                        <li>खाद्य सुरक्षा और स्वच्छता मानक</li>
+                                        <li>मेनू योजना और लागत नियंत्रण</li>
+                                        <li>पेशेवर रसोई प्रबंधन</li>
+                                    </ul>
+                                    <h5>यूट्यूब संसाधन:</h5>
+                                    <ul>
+                                        <li><a href="https://www.youtube.com/watch?v=G-Fg7l7G1zw" target="_blank">पेशेवर खाना पकाने की तकनीक</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=93p3L8Rg0cI" target="_blank">रसोई सुरक्षा और स्वच्छता</a></li>
+                                    </ul>
+                                </div>
+                                <div class="resource-pane" id="cooking-kannada">
+                                    <h5>ಕೋರ್ಸ್ ವಿಷಯ:</h5>
+                                    <ul>
+                                        <li>ಮೂಲ ಅಡುಗೆ ತಂತ್ರಗಳು ಮತ್ತು ಚಾಕು ಕೌಶಲ್ಯಗಳು</li>
+                                        <li>ಆಹಾರ ಸುರಕ್ಷತೆ ಮತ್ತು ಸ್ವಚ್ಛತೆ ಮಾನದಂಡಗಳು</li>
+                                        <li>ಮೆನು ಯೋಜನೆ ಮತ್ತು ವೆಚ್ಚ ನಿಯಂತ್ರಣ</li>
+                                        <li>ವೃತ್ತಿಪರ ಅಡುಗೆಮನೆ ನಿರ್ವಹಣೆ</li>
+                                    </ul>
+                                    <h5>ಯೂಟ್ಯೂಬ್ ಸಂಪನ್ಮೂಲಗಳು:</h5>
+                                    <ul>
+                                        <li><a href="https://www.youtube.com/watch?v=G-Fg7l7G1zw" target="_blank">ವೃತ್ತಿಪರ ಅಡುಗೆ ತಂತ್ರಗಳು</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=93p3L8Rg0cI" target="_blank">ಅಡುಗೆಮನೆ ಸುರಕ್ಷತೆ ಮಾರ್ಗದರ್ಶಿ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="images/driver training.jpeg" alt="Driving Training">
+                    </div>
+                    <div class="course-content">
+                        <h3>Commercial Driving</h3>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 8 weeks</span>
+                            <span><i class="fas fa-users"></i> Beginner</span>
+                        </div>
+                        <p>Get licensed for commercial driving with comprehensive training and practice.</p>
+                        <div class="language-resources">
+                            <h4>Learning Resources:</h4>
+                            <div class="resource-tabs">
+                                <button class="resource-tab active" data-lang="driving-english">English</button>
+                                <button class="resource-tab" data-lang="driving-hindi">हिंदी</button>
+                                <button class="resource-tab" data-lang="driving-kannada">ಕನ್ನಡ</button>
+                            </div>
+                            <div class="resource-content">
+                                <div class="resource-pane active" id="driving-english">
+                                    <h5>Course Content:</h5>
+                                    <ul>
+                                        <li>Commercial vehicle operation</li>
+                                        <li>Traffic rules and regulations</li>
+                                        <li>Vehicle maintenance basics</li>
+                                        <li>Road safety and emergency handling</li>
+                                    </ul>
+                                    <h5>YouTube Resources:</h5>
+                                    <ul>
+                                        <li><a href="https://www.youtube.com/watch?v=2jQ5G9Q5Jd3" target="_blank">Commercial Driving Basics</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=8W9Q5Jd3WvY" target="_blank">Road Safety Guide</a></li>
+                                    </ul>
+                                </div>
+                                <div class="resource-pane" id="driving-hindi">
+                                    <h5>पाठ्यक्रम सामग्री:</h5>
+                                    <ul>
+                                        <li>वाणिज्यिक वाहन संचालन</li>
+                                        <li>यातायात नियम और विनियम</li>
+                                        <li>वाहन रखरखाव की मूल बातें</li>
+                                        <li>सड़क सुरक्षा और आपातकालीन प्रबंधन</li>
+                                    </ul>
+                                    <h5>यूट्यूब संसाधन:</h5>
+                                    <ul>
+                                        <li><a href="https://www.youtube.com/watch?v=2jQ5G9Q5Jd3" target="_blank">वाणिज्यिक ड्राइविंग की मूल बातें</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=8W9Q5Jd3WvY" target="_blank">सड़क सुरक्षा गाइड</a></li>
+                                    </ul>
+                                </div>
+                                <div class="resource-pane" id="driving-kannada">
+                                    <h5>ಕೋರ್ಸ್ ವಿಷಯ:</h5>
+                                    <ul>
+                                        <li>ವಾಣಿಜ್ಯ ವಾಹನ ಕಾರ್ಯಾಚರಣೆ</li>
+                                        <li>ಸಂಚಾರ ನಿಯಮಗಳು ಮತ್ತು ನಿಯಂತ್ರಣಗಳು</li>
+                                        <li>ವಾಹನ ನಿರ್ವಹಣೆಯ ಮೂಲಭೂತಗಳು</li>
+                                        <li>ರಸ್ತೆ ಸುರಕ್ಷತೆ ಮತ್ತು ತುರ್ತು ನಿರ್ವಹಣೆ</li>
+                                    </ul>
+                                    <h5>ಯೂಟ್ಯೂಬ್ ಸಂಪನ್ಮೂಲಗಳು:</h5>
+                                    <ul>
+                                        <li><a href="https://www.youtube.com/watch?v=2jQ5G9Q5Jd3" target="_blank">ವಾಣಿಜ್ಯ ಚಾಲನೆಯ ಮೂಲಭೂತಗಳು</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=8W9Q5Jd3WvY" target="_blank">ರಸ್ತೆ ಸುರಕ್ಷತೆ ಮಾರ್ಗದರ್ಶಿ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Modules Section -->
+    <section class="modules-section">
+        <div class="container">
+            <h2>Educational Modules</h2>
+            <p class="section-description">Learn about our platform and services in your preferred language</p>
+            
+            <div class="language-tabs">
+                <button class="tab-btn active" data-lang="english">English</button>
+                <button class="tab-btn" data-lang="hindi">हिंदी</button>
+                <button class="tab-btn" data-lang="kannada">ಕನ್ನಡ</button>
+            </div>
+
+            <div class="modules-content">
+                <div class="module-tab active" id="english">
+                    <div class="module-card">
+                        <h3>Introduction to NayiUmeed</h3>
+                        <p>Learn about our mission, vision, and how we're transforming lives through skill development.</p>
+                        <div class="module-resources">
+                            <a href="pdfs/english/introduction.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> Introduction Guide
+                            </a>
+                            <a href="pdfs/english/faq.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> FAQ Guide
+                            </a>
+                        </div>
+                        <a href="#" class="btn secondary">Start Learning</a>
+                    </div>
+                    <div class="module-card">
+                        <h3>Digital Literacy</h3>
+                        <p>Basic computer skills, internet usage, and digital safety for beginners.</p>
+                        <div class="module-resources">
+                            <a href="pdfs/english/digital-basics.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> Digital Basics Guide
+                            </a>
+                            <a href="pdfs/english/internet-safety.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> Internet Safety Guide
+                            </a>
+                        </div>
+                        <a href="#" class="btn secondary">Start Learning</a>
+                    </div>
+                    <div class="module-card">
+                        <h3>Financial Literacy</h3>
+                        <p>Understanding banking, savings, and financial planning for better future.</p>
+                        <div class="module-resources">
+                            <a href="pdfs/english/banking-basics.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> Banking Basics Guide
+                            </a>
+                            <a href="pdfs/english/financial-planning.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> Financial Planning Guide
+                            </a>
+                        </div>
+                        <a href="#" class="btn secondary">Start Learning</a>
+                    </div>
+                </div>
+
+                <div class="module-tab" id="hindi">
+                    <div class="module-card">
+                        <h3>नई उम्मीद का परिचय</h3>
+                        <p>हमारे मिशन, विजन और कौशल विकास के माध्यम से जीवन को कैसे बदल रहे हैं, इसके बारे में जानें।</p>
+                        <div class="module-resources">
+                            <a href="pdfs/hindi/introduction.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> परिचय गाइड
+                            </a>
+                            <a href="pdfs/hindi/faq.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> सामान्य प्रश्न गाइड
+                            </a>
+                        </div>
+                        <a href="#" class="btn secondary">सीखना शुरू करें</a>
+                    </div>
+                    <div class="module-card">
+                        <h3>डिजिटल साक्षरता</h3>
+                        <p>शुरुआती लोगों के लिए बुनियादी कंप्यूटर कौशल, इंटरनेट उपयोग और डिजिटल सुरक्षा।</p>
+                        <div class="module-resources">
+                            <a href="pdfs/hindi/digital-basics.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> डिजिटल बेसिक्स गाइड
+                            </a>
+                            <a href="pdfs/hindi/internet-safety.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> इंटरनेट सुरक्षा गाइड
+                            </a>
+                        </div>
+                        <a href="#" class="btn secondary">सीखना शुरू करें</a>
+                    </div>
+                    <div class="module-card">
+                        <h3>वित्तीय साक्षरता</h3>
+                        <p>बेहतर भविष्य के लिए बैंकिंग, बचत और वित्तीय योजना को समझना।</p>
+                        <div class="module-resources">
+                            <a href="pdfs/hindi/banking-basics.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> बैंकिंग बेसिक्स गाइड
+                            </a>
+                            <a href="pdfs/hindi/financial-planning.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> वित्तीय योजना गाइड
+                            </a>
+                        </div>
+                        <a href="#" class="btn secondary">सीखना शुरू करें</a>
+                    </div>
+                </div>
+
+                <div class="module-tab" id="kannada">
+                    <div class="module-card">
+                        <h3>ನಯಿ ಉಮ್ಮೀದ್ ಪರಿಚಯ</h3>
+                        <p>ನಮ್ಮ ಧ್ಯೇಯ, ದೃಷ್ಟಿ ಮತ್ತು ಕೌಶಲ್ಯ ಅಭಿವೃದ್ಧಿಯ ಮೂಲಕ ಜೀವನವನ್ನು ಹೇಗೆ ಬದಲಾಯಿಸುತ್ತಿದ್ದೇವೆ ಎಂಬುದನ್ನು ತಿಳಿಯಿರಿ.</p>
+                        <div class="module-resources">
+                            <a href="pdfs/kannada/introduction.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> ಪರಿಚಯ ಮಾರ್ಗದರ್ಶಿ
+                            </a>
+                            <a href="pdfs/kannada/faq.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> FAQ ಮಾರ್ಗದರ್ಶಿ
+                            </a>
+                        </div>
+                        <a href="#" class="btn secondary">ಕಲಿಯಲು ಪ್ರಾರಂಭಿಸಿ</a>
+                    </div>
+                    <div class="module-card">
+                        <h3>ಡಿಜಿಟಲ್ ಸಾಕ್ಷರತೆ</h3>
+                        <p>ಹೊಸಬರಿಗಾಗಿ ಮೂಲ ಕಂಪ್ಯೂಟರ್ ಕೌಶಲ್ಯಗಳು, ಇಂಟರ್ನೆಟ್ ಬಳಕೆ ಮತ್ತು ಡಿಜಿಟಲ್ ಸುರಕ್ಷತೆ.</p>
+                        <div class="module-resources">
+                            <a href="pdfs/kannada/digital-basics.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> ಡಿಜಿಟಲ್ ಮೂಲಭೂತ ಮಾರ್ಗದರ್ಶಿ
+                            </a>
+                            <a href="pdfs/kannada/internet-safety.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> ಇಂಟರ್ನೆಟ್ ಸುರಕ್ಷತೆ ಮಾರ್ಗದರ್ಶಿ
+                            </a>
+                        </div>
+                        <a href="#" class="btn secondary">ಕಲಿಯಲು ಪ್ರಾರಂಭಿಸಿ</a>
+                    </div>
+                    <div class="module-card">
+                        <h3>ಹಣಕಾಸು ಸಾಕ್ಷರತೆ</h3>
+                        <p>ಉತ್ತಮ ಭವಿಷ್ಯಕ್ಕಾಗಿ ಬ್ಯಾಂಕಿಂಗ್, ಉಳಿತಾಯ ಮತ್ತು ಹಣಕಾಸು ಯೋಜನೆಯನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು.</p>
+                        <div class="module-resources">
+                            <a href="pdfs/kannada/banking-basics.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> ಬ್ಯಾಂಕಿಂಗ್ ಮೂಲಭೂತ ಮಾರ್ಗದರ್ಶಿ
+                            </a>
+                            <a href="pdfs/kannada/financial-planning.html" class="resource-link" target="_blank">
+                                <i class="fas fa-file-pdf"></i> ಹಣಕಾಸು ಯೋಜನೆ ಮಾರ್ಗದರ್ಶಿ
+                            </a>
+                        </div>
+                        <a href="#" class="btn secondary">ಕಲಿಯಲು ಪ್ರಾರಂಭಿಸಿ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2>Training Benefits</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Industry-Recognized Certification</h3>
+                    <p>Receive government-approved certificates that are valid across India</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Expert-Led Training</h3>
+                    <p>Learn from experienced professionals with years of industry experience</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Practical Learning</h3>
+                    <p>Hands-on training with real equipment and tools in simulated work environments</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-language"></i>
+                    <h3>Multi-Language Support</h3>
+                    <p>Training materials and support available in English, Hindi, and Kannada</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-rupee-sign"></i>
+                    <h3>Financial Support</h3>
+                    <p>Access to government schemes and subsidies for course fees</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Process -->
+    <section class="training-process">
+        <div class="container">
+            <h2>Training Process</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Enroll</h3>
+                    <p>Choose your course and complete registration</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Learn</h3>
+                    <p>Attend classes and practical sessions</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Practice</h3>
+                    <p>Get hands-on experience with tools and equipment</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Certify</h3>
+                    <p>Complete assessment and get certified</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Start Your Skill Development Journey</h2>
+            <p>Join our training programs and build a better future</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Toll-free: 1800-123-4567</p>
+                    <p>Email: support@nayiumeed.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NayiUmeed. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and tabs
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.module-tab').forEach(tab => tab.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding tab
+                button.classList.add('active');
+                document.getElementById(button.dataset.lang).classList.add('active');
+            });
+        });
+
+        // New language resource tab switching code
+        document.querySelectorAll('.resource-tab').forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.dataset.lang;
+                const parent = button.closest('.language-resources');
+                
+                // Remove active class from all buttons and panes in this section
+                parent.querySelectorAll('.resource-tab').forEach(btn => btn.classList.remove('active'));
+                parent.querySelectorAll('.resource-pane').forEach(pane => pane.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding pane
+                button.classList.add('active');
+                parent.querySelector(`#${lang}`).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html> 

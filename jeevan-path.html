@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JeevanPath - LifeGraph AI | NayiUmeed</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .feature-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .life-graph {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .graph-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .milestone-timeline {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: #007bff;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .milestone {
+            padding: 1rem;
+            position: relative;
+            width: 45%;
+            margin: 2rem 0;
+        }
+
+        .milestone::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #007bff;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .milestone:nth-child(odd) {
+            left: 0;
+        }
+
+        .milestone:nth-child(even) {
+            left: 55%;
+        }
+
+        .milestone:nth-child(odd)::after {
+            right: -60px;
+        }
+
+        .milestone:nth-child(even)::after {
+            left: -60px;
+        }
+
+        .cta-section {
+            background: #007bff;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-section .btn {
+            margin-top: 2rem;
+            background: white;
+            color: #007bff;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .cta-section .btn:hover {
+            background: #f8f9fa;
+            transform: scale(1.05);
+        }
+
+        .salary-prediction {
+            padding: 4rem 0;
+            background: #fff;
+        }
+
+        .prediction-form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .skills-input {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .skills-input input {
+            flex: 1;
+        }
+
+        .add-skill {
+            padding: 0.75rem 1.5rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-tag {
+            background: #e9ecef;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .remove-skill {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+        }
+
+        .salary-history {
+            margin-top: 2rem;
+        }
+
+        .salary-input {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .prediction-graph {
+            margin-top: 2rem;
+            height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+        }
+
+        .predict-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .predict-btn:hover {
+            background: #0056b3;
+        }
+
+        .prediction-result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #e9ecef;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .prediction-result h3 {
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        .prediction-graph-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 1rem;
+        }
+        
+        .prediction-graph {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/ChatGPT Image Apr 23, 2025, 02_45_05 AM.png" alt="NayiUmeed Logo" style="height: 60px; width: auto;">
+                <span class="logo-text">NayiUmeed</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#how-it-works">How It Works</a>
+                <a href="index.html#join-us">Join Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="feature-hero">
+        <div class="container">
+            <h1>JeevanPath</h1>
+            <p class="tagline">AI-Powered Life Journey Mapping</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="life-graph">
+        <div class="container">
+            <h2>Map Your Journey to Success</h2>
+            <p>JeevanPath uses advanced AI to analyze your life journey and create a personalized path to success.</p>
+            
+            <div class="graph-features">
+                <div class="feature-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Journey Mapping</h3>
+                    <p>Visualize your life journey and identify key milestones</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Opportunity Analysis</h3>
+                    <p>Discover potential opportunities based on your journey</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-compass"></i>
+                    <h3>Goal Setting</h3>
+                    <p>Set achievable goals with AI-guided recommendations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="milestone-timeline">
+        <div class="container">
+            <h2>Your Journey to Success</h2>
+            <div class="timeline">
+                <div class="milestone">
+                    <h3>Current Status</h3>
+                    <p>Assessment of your present situation and skills</p>
+                </div>
+                <div class="milestone">
+                    <h3>Short-term Goals</h3>
+                    <p>Immediate steps for improvement and growth</p>
+                </div>
+                <div class="milestone">
+                    <h3>Skill Development</h3>
+                    <p>Targeted training and learning opportunities</p>
+                </div>
+                <div class="milestone">
+                    <h3>Career Achievement</h3>
+                    <p>Reaching your professional goals</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Salary Prediction Section -->
+    <section class="salary-prediction">
+        <div class="container">
+            <h2>Salary Growth Prediction</h2>
+            <p>Enter your skills and salary history to get AI-powered salary predictions</p>
+            
+            <div class="prediction-form">
+                <div class="form-group">
+                    <label>Your Skills</label>
+                    <div class="skills-input">
+                        <input type="text" id="skill-input" placeholder="Enter a skill">
+                        <button class="add-skill" onclick="addSkill()">Add Skill</button>
+                    </div>
+                    <div class="skill-tags" id="skill-tags"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>Industry</label>
+                    <select id="industry">
+                        <option value="construction">Construction</option>
+                        <option value="cooking">Professional Cooking</option>
+                        <option value="driving">Commercial Driving</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Region</label>
+                    <select id="region">
+                        <option value="metro">Metro City</option>
+                        <option value="tier1">Tier 1 City</option>
+                        <option value="tier2">Tier 2 City</option>
+                        <option value="rural">Rural Area</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Years of Experience</label>
+                    <input type="number" id="experience" min="0" max="50" placeholder="Enter years of experience">
+                </div>
+
+                <div class="salary-history">
+                    <h3>Salary History (Last 5 Years)</h3>
+                    <div class="salary-input">
+                        <div class="form-group">
+                            <label>Year 1</label>
+                            <input type="number" id="salary-1" placeholder="Enter salary">
+                        </div>
+                        <div class="form-group">
+                            <label>Year 2</label>
+                            <input type="number" id="salary-2" placeholder="Enter salary">
+                        </div>
+                        <div class="form-group">
+                            <label>Year 3</label>
+                            <input type="number" id="salary-3" placeholder="Enter salary">
+                        </div>
+                        <div class="form-group">
+                            <label>Year 4</label>
+                            <input type="number" id="salary-4" placeholder="Enter salary">
+                        </div>
+                        <div class="form-group">
+                            <label>Year 5</label>
+                            <input type="number" id="salary-5" placeholder="Enter salary">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="predict-btn" onclick="predictSalary()">Predict Future Salary</button>
+
+                <div class="prediction-result" id="prediction-result">
+                    <h3>Salary Prediction</h3>
+                    <div class="prediction-graph-container">
+                        <canvas id="prediction-graph" width="800" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Toll-free: 1800-123-4567</p>
+                    <p>Email: support@nayiumeed.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NayiUmeed. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced industry growth factors with more sophisticated data
+        const industryGrowthFactors = {
+            construction: {
+                baseGrowth: 0.06,
+                skillMultipliers: {
+                    'project management': { weight: 1.15, impact: 0.12 },
+                    'safety protocols': { weight: 1.12, impact: 0.08 },
+                    'technical drawing': { weight: 1.08, impact: 0.06 },
+                    'quality control': { weight: 1.08, impact: 0.05 },
+                    'construction planning': { weight: 1.15, impact: 0.1 },
+                    'site supervision': { weight: 1.14, impact: 0.09 },
+                    'carpentry': { weight: 1.2, impact: 0.15 },
+                    'electrical work': { weight: 1.22, impact: 0.16 },
+                    'plumbing': { weight: 1.18, impact: 0.13 },
+                    'masonry': { weight: 1.16, impact: 0.12 },
+                    'welding': { weight: 1.2, impact: 0.15 },
+                    'concrete work': { weight: 1.17, impact: 0.11 },
+                    'roofing': { weight: 1.18, impact: 0.13 },
+                    'painting': { weight: 1.12, impact: 0.08 },
+                    'tiling': { weight: 1.15, impact: 0.1 },
+                    'steel fabrication': { weight: 1.21, impact: 0.15 },
+                    'HVAC installation': { weight: 1.19, impact: 0.14 },
+                    'scaffolding': { weight: 1.14, impact: 0.1 },
+                    'heavy equipment operation': { weight: 1.22, impact: 0.16 },
+                    'building inspection': { weight: 1.18, impact: 0.13 },
+                    'estimating': { weight: 1.16, impact: 0.11 },
+                    'blueprint reading': { weight: 1.15, impact: 0.1 },
+                    'sustainable construction': { weight: 1.2, impact: 0.15 },
+                    'renovation': { weight: 1.18, impact: 0.13 },
+                    'demolition': { weight: 1.17, impact: 0.12 }
+                },
+                regionalFactors: {
+                    'metro': { base: 1.15, growth: 0.1 },
+                    'tier1': { base: 1.08, growth: 0.08 },
+                    'tier2': { base: 1.0, growth: 0.06 },
+                    'rural': { base: 0.92, growth: 0.05 }
+                },
+                experienceCurve: {
+                    base: 0.015,
+                    diminishing: 0.0008,
+                    max: 0.04
+                }
+            },
+            cooking: {
+                baseGrowth: 0.09,
+                skillMultipliers: {
+                    'culinary arts': { weight: 1.2, impact: 0.16 },
+                    'food safety': { weight: 1.12, impact: 0.1 },
+                    'menu planning': { weight: 1.08, impact: 0.08 },
+                    'kitchen management': { weight: 1.15, impact: 0.12 },
+                    'international cuisine': { weight: 1.18, impact: 0.15 },
+                    'food presentation': { weight: 1.15, impact: 0.12 }
+                },
+                regionalFactors: {
+                    'metro': { base: 1.22, growth: 0.12 },
+                    'tier1': { base: 1.12, growth: 0.1 },
+                    'tier2': { base: 1.04, growth: 0.08 },
+                    'rural': { base: 0.92, growth: 0.06 }
+                },
+                experienceCurve: {
+                    base: 0.02,
+                    diminishing: 0.0012,
+                    max: 0.05
+                }
+            },
+            driving: {
+                baseGrowth: 0.08,
+                skillMultipliers: {
+                    'defensive driving': { weight: 1.12, impact: 0.1 },
+                    'route planning': { weight: 1.08, impact: 0.08 },
+                    'vehicle maintenance': { weight: 1.08, impact: 0.08 },
+                    'logistics': { weight: 1.15, impact: 0.12 },
+                    'fleet management': { weight: 1.15, impact: 0.12 },
+                    'safety compliance': { weight: 1.14, impact: 0.11 }
+                },
+                regionalFactors: {
+                    'metro': { base: 1.2, growth: 0.1 },
+                    'tier1': { base: 1.08, growth: 0.08 },
+                    'tier2': { base: 1.0, growth: 0.06 },
+                    'rural': { base: 0.92, growth: 0.05 }
+                },
+                experienceCurve: {
+                    base: 0.018,
+                    diminishing: 0.001,
+                    max: 0.045
+                }
+            }
+        };
+
+        // Enhanced market trends with seasonal variations
+        const marketTrends = {
+            construction: {
+                base: [0.04, 0.05, 0.06, 0.07, 0.08],
+                seasonal: [0.01, 0.008, 0.02, 0.015, 0.01],
+                volatility: 0.02
+            },
+            cooking: {
+                base: [0.06, 0.07, 0.09, 0.1, 0.11],
+                seasonal: [0.02, 0.015, 0.03, 0.02, 0.015],
+                volatility: 0.03
+            },
+            driving: {
+                base: [0.05, 0.06, 0.07, 0.08, 0.09],
+                seasonal: [0.015, 0.01, 0.02, 0.015, 0.01],
+                volatility: 0.025
+            }
+        };
+
+        let skills = [];
+
+        function addSkill() {
+            const skillInput = document.getElementById('skill-input');
+            const skill = skillInput.value.trim().toLowerCase();
+            
+            if (skill && !skills.includes(skill)) {
+                skills.push(skill);
+                updateSkillTags();
+                skillInput.value = '';
+            }
+        }
+
+        function removeSkill(skill) {
+            skills = skills.filter(s => s !== skill);
+            updateSkillTags();
+        }
+
+        function updateSkillTags() {
+            const skillTags = document.getElementById('skill-tags');
+            skillTags.innerHTML = skills.map(skill => `
+                <div class="skill-tag">
+                    ${skill}
+                    <button class="remove-skill" onclick="removeSkill('${skill}')">×</button>
+                </div>
+            `).join('');
+        }
+
+        // Linear regression for base prediction
+        function linearRegression(x, y) {
+            const n = x.length;
+            let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+            
+            for (let i = 0; i < n; i++) {
+                sumX += x[i];
+                sumY += y[i];
+                sumXY += x[i] * y[i];
+                sumXX += x[i] * x[i];
+            }
+            
+            const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+            const intercept = (sumY - slope * sumX) / n;
+            
+            return { slope, intercept };
+        }
+
+        function calculateSkillImpact(industry, skills) {
+            const industryData = industryGrowthFactors[industry];
+            let totalImpact = 0;
+            let totalWeight = 0;
+            
+            skills.forEach(skill => {
+                if (industryData.skillMultipliers[skill]) {
+                    const multiplier = industryData.skillMultipliers[skill];
+                    totalImpact += multiplier.weight * multiplier.impact;
+                    totalWeight += multiplier.impact;
+                }
+            });
+            
+            return totalWeight > 0 ? 1 + (totalImpact / totalWeight) : 1;
+        }
+
+        function calculateRegionalImpact(industry, region) {
+            const regionalData = industryGrowthFactors[industry].regionalFactors[region];
+            return regionalData ? regionalData.base : 1.0;
+        }
+
+        function calculateExperienceImpact(industry, experience) {
+            const curve = industryGrowthFactors[industry].experienceCurve;
+            const diminishingFactor = Math.min(experience * curve.diminishing, curve.max - curve.base);
+            return 1 + (curve.base + diminishingFactor);
+        }
+
+        function getMarketTrend(industry, year) {
+            const trends = marketTrends[industry];
+            const baseIndex = year % trends.base.length;
+            const seasonalIndex = year % trends.seasonal.length;
+            
+            const baseGrowth = trends.base[baseIndex];
+            const seasonalAdjustment = trends.seasonal[seasonalIndex];
+            const randomFactor = (Math.random() - 0.5) * trends.volatility;
+            
+            return baseGrowth + seasonalAdjustment + randomFactor;
+        }
+
+        function predictSalary() {
+            try {
+                // Get salary history
+                const salaries = [];
+                const years = [];
+                const currentYear = new Date().getFullYear();
+                
+                for (let i = 1; i <= 5; i++) {
+                    const salaryInput = document.getElementById(`salary-${i}`);
+                    if (salaryInput && salaryInput.value) {
+                        salaries.push(parseInt(salaryInput.value));
+                        years.push(currentYear - (5 - i));
+                    }
+                }
+
+                if (salaries.length < 2) {
+                    alert('Please enter at least 2 years of salary history');
+                    return;
+                }
+
+                // Get other inputs
+                const industry = document.getElementById('industry').value;
+                const region = document.getElementById('region').value;
+                const experience = parseInt(document.getElementById('experience').value) || 0;
+
+                // Calculate base prediction using linear regression
+                const regression = linearRegression(years, salaries);
+                const basePrediction = regression.slope * (currentYear + 1) + regression.intercept;
+
+                // Calculate impact factors with more conservative weights
+                const skillImpact = calculateSkillImpact(industry, skills);
+                const regionalImpact = calculateRegionalImpact(industry, region);
+                const experienceImpact = calculateExperienceImpact(industry, experience);
+
+                // Enhanced prediction with more conservative factors
+                const predictedSalaries = [];
+                let currentSalary = salaries[salaries.length - 1];
+                
+                for (let i = 0; i < 5; i++) {
+                    const marketTrend = getMarketTrend(industry, i);
+                    const yearFactor = 1 + (i * 0.015); // Reduced from 0.02 to 0.015
+                    
+                    // More conservative growth rate calculation
+                    const growthRate = (
+                        (regression.slope / currentSalary) * 0.7 + // Reduced base trend impact
+                        marketTrend * yearFactor * 0.8 + // Reduced market impact
+                        (skillImpact - 1) * 0.2 + // Reduced from 0.3 to 0.2
+                        (regionalImpact - 1) * 0.15 + // Reduced from 0.2 to 0.15
+                        (experienceImpact - 1) * 0.08 // Reduced from 0.1 to 0.08
+                    );
+
+                    // Apply maximum growth cap
+                    const maxGrowthRate = 0.15; // 15% maximum annual growth
+                    const adjustedGrowthRate = Math.min(growthRate, maxGrowthRate);
+
+                    currentSalary *= (1 + adjustedGrowthRate);
+                    predictedSalaries.push(Math.round(currentSalary));
+                }
+
+                displayPrediction(salaries, predictedSalaries, industry);
+            } catch (error) {
+                console.error('Error in salary prediction:', error);
+                alert('An error occurred while predicting salary. Please try again.');
+            }
+        }
+
+        function displayPrediction(historical, predicted, industry) {
+            try {
+                const result = document.getElementById('prediction-result');
+                if (!result) {
+                    console.error('Prediction result element not found');
+                    return;
+                }
+                result.style.display = 'block';
+
+                const canvas = document.getElementById('prediction-graph');
+                if (!canvas) {
+                    console.error('Prediction graph canvas not found');
+                    return;
+                }
+
+                // Clear any existing chart
+                if (window.salaryChart) {
+                    window.salaryChart.destroy();
+                }
+
+                const years = [];
+                const currentYear = new Date().getFullYear();
+                
+                // Historical years
+                for (let i = historical.length; i > 0; i--) {
+                    years.push(currentYear - i);
+                }
+                
+                // Future years
+                for (let i = 0; i < 5; i++) {
+                    years.push(currentYear + i);
+                }
+
+                // Calculate confidence intervals
+                const confidenceIntervals = predicted.map((salary, index) => {
+                    const margin = salary * 0.1; // 10% margin
+                    return {
+                        upper: salary + margin,
+                        lower: salary - margin
+                    };
+                });
+
+                // Create the chart
+                const ctx = canvas.getContext('2d');
+                window.salaryChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: years,
+                        datasets: [
+                            {
+                                label: 'Historical Salary',
+                                data: historical,
+                                borderColor: '#007bff',
+                                backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                                fill: false,
+                                tension: 0.4
+                            },
+                            {
+                                label: 'Predicted Salary',
+                                data: [...Array(historical.length).fill(null), ...predicted],
+                                borderColor: '#28a745',
+                                backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                                fill: false,
+                                tension: 0.4,
+                                borderDash: [5, 5]
+                            },
+                            {
+                                label: 'Confidence Interval',
+                                data: [...Array(historical.length).fill(null), ...predicted],
+                                borderColor: 'rgba(40, 167, 69, 0.2)',
+                                backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                                fill: '+1',
+                                tension: 0.4,
+                                pointRadius: 0
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const index = context.dataIndex;
+                                        if (index >= historical.length) {
+                                            const predIndex = index - historical.length;
+                                            return [
+                                                `Predicted: ₹${context.raw.toLocaleString()}`,
+                                                `Range: ₹${confidenceIntervals[predIndex].lower.toLocaleString()} - ₹${confidenceIntervals[predIndex].upper.toLocaleString()}`
+                                            ];
+                                        }
+                                        return `Historical: ₹${context.raw.toLocaleString()}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Salary (₹)'
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        return '₹' + value.toLocaleString();
+                                    }
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Year'
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error displaying prediction:', error);
+                alert('An error occurred while displaying the prediction. Please try again.');
+            }
+        }
+
+        // Initialize the form
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load Chart.js if not already loaded
+            if (typeof Chart === 'undefined') {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+                script.onload = function() {
+                    initializeForm();
+                };
+                document.head.appendChild(script);
+            } else {
+                initializeForm();
+            }
+        });
+
+        function initializeForm() {
+            const predictBtn = document.querySelector('.predict-btn');
+            if (predictBtn) {
+                predictBtn.addEventListener('click', predictSalary);
+            }
+        }
+    </script>
+</body>
+</html> 

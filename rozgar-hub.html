@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RozgarHub - Job Opportunity Hub | NayiUmeed</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .feature-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .job-categories {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-card i {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        .job-listings {
+            padding: 4rem 0;
+        }
+
+        .job-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .job-card h3 {
+            color: #007bff;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+            color: #666;
+        }
+
+        .job-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .apply-btn {
+            background: #007bff;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            background: #0056b3;
+        }
+
+        .cta-section {
+            background: #007bff;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-section .btn {
+            margin-top: 2rem;
+            background: white;
+            color: #007bff;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .cta-section .btn:hover {
+            background: #f8f9fa;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/ChatGPT Image Apr 23, 2025, 02_45_05 AM.png" alt="NayiUmeed Logo" style="height: 60px; width: auto;">
+                <span class="logo-text">NayiUmeed</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#how-it-works">How It Works</a>
+                <a href="index.html#join-us">Join Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="feature-hero">
+        <div class="container">
+            <h1>RozgarHub</h1>
+            <p class="tagline">Your Gateway to Employment Opportunities</p>
+        </div>
+    </section>
+
+    <!-- Job Categories -->
+    <section class="job-categories">
+        <div class="container">
+            <h2>Explore Job Categories</h2>
+            <p>Find opportunities across various sectors that match your skills</p>
+            
+            <div class="category-grid">
+                <div class="category-card">
+                    <i class="fas fa-hard-hat"></i>
+                    <h3>Construction</h3>
+                    <p>Building and infrastructure jobs</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Food Service</h3>
+                    <p>Restaurant and catering positions</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Domestic Help</h3>
+                    <p>Household assistance roles</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-truck"></i>
+                    <h3>Transportation</h3>
+                    <p>Driving and delivery jobs</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-broom"></i>
+                    <h3>Cleaning</h3>
+                    <p>Maintenance and sanitation work</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Retail</h3>
+                    <p>Shop and market positions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Jobs -->
+    <section class="job-listings">
+        <div class="container">
+            <h2>Latest Opportunities</h2>
+            <div class="job-card">
+                <h3>Construction Helper</h3>
+                <div class="job-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> Delhi NCR</span>
+                    <span><i class="fas fa-rupee-sign"></i> 15,000 - 18,000/month</span>
+                    <span><i class="fas fa-clock"></i> Full Time</span>
+                </div>
+                <p>Looking for hardworking individuals for construction site work. No experience required, training provided.</p>
+                <a href="#" class="apply-btn">Apply Now</a>
+            </div>
+
+            <div class="job-card">
+                <h3>Restaurant Kitchen Staff</h3>
+                <div class="job-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> Mumbai</span>
+                    <span><i class="fas fa-rupee-sign"></i> 12,000 - 15,000/month</span>
+                    <span><i class="fas fa-clock"></i> Full Time</span>
+                </div>
+                <p>Hiring kitchen helpers for a busy restaurant. Food handling experience preferred but not mandatory.</p>
+                <a href="#" class="apply-btn">Apply Now</a>
+            </div>
+
+            <div class="job-card">
+                <h3>Delivery Partner</h3>
+                <div class="job-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> Bangalore</span>
+                    <span><i class="fas fa-rupee-sign"></i> Up to 25,000/month</span>
+                    <span><i class="fas fa-clock"></i> Flexible Hours</span>
+                </div>
+                <p>Join our delivery partner network. Own two-wheeler required. Earn based on deliveries.</p>
+                <a href="#" class="apply-btn">Apply Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Career Journey?</h2>
+            <p>Create your profile and start applying to jobs that match your skills</p>
+            <a href="#" class="btn">Create Profile</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Toll-free: 1800-123-4567</p>
+                    <p>Email: support@nayiumeed.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NayiUmeed. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

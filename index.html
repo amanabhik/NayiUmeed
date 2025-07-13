@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NayiUmeed - Empowering Lives</title>
+    <link rel="icon" type="image/png" href="images/ChatGPT Image Apr 23, 2025, 02_45_05 AM.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="chatbot.js" defer></script>
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            margin: 15% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .join-form {
+            margin-top: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-header img {
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .selection-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .selection-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 200px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .selection-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background: white;
+        }
+
+        .selection-card i {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        .selection-card h2 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .selection-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .selection-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .selection-card {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .modal-content {
+                margin: 20% auto;
+                width: 95%;
+            }
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 165, 0, 0.15) 0%, rgba(0, 0, 0, 0.6) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card h3 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .feature-card h3 a:hover {
+            color: #007bff;
+        }
+
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-story {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .story-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .story-timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: #007bff;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .story-step {
+            position: relative;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            background: #007bff;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            z-index: 1;
+        }
+
+        .step-content {
+            width: 45%;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .story-step:nth-child(odd) .step-content {
+            margin-left: 55%;
+        }
+
+        .story-step:nth-child(even) .step-content {
+            margin-right: 55%;
+        }
+
+        .step-content h3 {
+            color: #007bff;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .step-content strong {
+            color: #007bff;
+        }
+
+        @media (max-width: 768px) {
+            .story-timeline::before {
+                left: 30px;
+            }
+
+            .step-icon {
+                left: 30px;
+            }
+
+            .step-content {
+                width: 80%;
+                margin-left: 70px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Selection Modal -->
+    <div id="selectionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="images/ChatGPT Image Apr 23, 2025, 02_45_05 AM.png" alt="NayiUmeed Logo">
+                <h2 class="modal-title">Welcome to NayiUmeed</h2>
+                <p class="modal-subtitle">Please select your role to continue</p>
+            </div>
+            <div class="selection-cards">
+                <div class="selection-card" onclick="redirectTo('index.html')">
+                    <i class="fas fa-user-tie"></i>
+                    <h2>I'm a Worker</h2>
+                    <p>Looking for opportunities and support</p>
+                </div>
+                
+                <div class="selection-card" onclick="redirectTo('rozgaar-hub-recruiter.html')">
+                    <i class="fas fa-building"></i>
+                    <h2>I'm a Job Provider</h2>
+                    <p>Looking to hire skilled workers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Join Us Modal -->
+    <div id="joinUsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Join Our Community</h2>
+                <p>Fill in your details to get started</p>
+            </div>
+            <form id="joinForm" class="join-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                </div>
+                <button type="submit" class="btn primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="images/ChatGPT Image Apr 23, 2025, 02_45_05 AM.png" alt="NayiUmeed Logo" style="height: 60px; width: auto;">
+                <span class="logo-text">NayiUmeed</span>
+            </a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#mission">Mission</a>
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#join-us">Join Us</a>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="container">
+                <h1 class="animate-fade-in">Operation NayiUmeed</h1>
+                <p class="tagline animate-fade-in">Because Every Life Deserves a Helping Hand</p>
+                <div class="cta-buttons animate-fade-in">
+                    <a href="#features" class="btn secondary">Explore Features</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="mission">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <p class="mission-statement">To uplift those we often ignore, using the power of tech, community, and compassion.</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Our Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3><a href="zindagialert.html">ZindagiAlert</a></h3>
+                    <p>StreetReporting for Beggars' Health & Needs</p>
+                    <span class="impact">Saving lives, one alert at a time</span>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-microphone"></i>
+                    <h3><a href="awazresume.html">AwazResume</a></h3>
+                    <p>Voice-Based Resume Creation</p>
+                    <span class="impact">Giving voice to untold stories</span>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3><a href="umeedconnect.html">UmeedConnect</a></h3>
+                    <p>Toll-Free Assistance Line</p>
+                    <span class="impact">Always there when you need us</span>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3><a href="jeevan-path.html">JeevanPath</a></h3>
+                    <p>LifeGraph AI</p>
+                    <span class="impact">Mapping paths to success</span>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3><a href="rozgaar-hub-worker.html">RozgarHub</a></h3>
+                    <p>Job Opportunity Hubs</p>
+                    <span class="impact">Connecting talent with opportunity</span>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3><a href="kaam-ki-pehchaan.html">KaamKiPehchaan</a></h3>
+                    <p>LinkedIn for the Underrated</p>
+                    <span class="impact">Building professional networks</span>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3><a href="kaushal-shakti.html">KaushalShakti</a></h3>
+                    <p>Skill Training & Development</p>
+                    <span class="impact">Empowering through education</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Story Section -->
+    <section class="user-story">
+        <div class="container">
+            <h2>Meet Rajesh: A Journey of Transformation</h2>
+            <div class="story-timeline">
+                <div class="story-step">
+                    <div class="step-icon"><i class="fas fa-heartbeat"></i></div>
+                    <div class="step-content">
+                        <h3>Day 1: A New Beginning</h3>
+                        <p>Rajesh, a daily wage worker, was struggling to find work. A kind stranger used <strong>ZindagiAlert</strong> to report his situation. Our team reached out within an hour, providing immediate support and guidance.</p>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <div class="step-icon"><i class="fas fa-microphone"></i></div>
+                    <div class="step-content">
+                        <h3>Day 2: Finding His Voice</h3>
+                        <p>Using <strong>AwazResume</strong>, Rajesh created his first professional profile by simply speaking about his skills and experience. The AI-powered system transformed his spoken words into a professional resume.</p>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <div class="step-icon"><i class="fas fa-brain"></i></div>
+                    <div class="step-content">
+                        <h3>Day 3: Discovering Potential</h3>
+                        <p><strong>KaushalTracker</strong> analyzed Rajesh's skills and identified his natural talent for electrical work. The system recommended specific training programs to enhance his abilities.</p>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <div class="step-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="step-content">
+                        <h3>Week 1-4: Skill Development</h3>
+                        <p>Through <strong>KaushalShakti</strong>, Rajesh enrolled in an electrical training program. He learned through practical sessions and multi-language support, making the learning process accessible and effective.</p>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="step-content">
+                        <h3>Week 5: Career Planning</h3>
+                        <p><strong>JeevanPath</strong> helped Rajesh create a personalized career roadmap, showing him the steps needed to become a certified electrician and start his own business.</p>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <div class="step-icon"><i class="fas fa-users"></i></div>
+                    <div class="step-content">
+                        <h3>Week 6: Building Connections</h3>
+                        <p>Using <strong>KaamKiPehchaan</strong>, Rajesh connected with other electricians, learned from their experiences, and started building his professional network.</p>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <div class="step-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="step-content">
+                        <h3>Week 8: New Opportunities</h3>
+                        <p>Through <strong>RozgarHub</strong>, Rajesh found his first professional job as an electrician's assistant. The platform matched his skills with the perfect opportunity.</p>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <div class="step-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="step-content">
+                        <h3>Ongoing Support</h3>
+                        <p>Whenever Rajesh needed guidance, he could call <strong>UmeedConnect</strong> for support, advice, or to report any challenges he faced in his new career.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Connect</h3>
+                    <p>Reach out through our app or toll-free number</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Learn</h3>
+                    <p>Get trained in skills that match your potential</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Grow</h3>
+                    <p>Build your career with our support and guidance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Toll-free: 1800-123-4567</p>
+                    <p>Email: support@nayiumeed.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Donate</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NayiUmeed. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Show modal after a delay when page loads
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('selectionModal').style.display = 'block';
+            }, 2000); // Show after 2 seconds
+        }
+
+        // Function to handle redirection
+        function redirectTo(url) {
+            if (url === 'index.html') {
+                // If worker is selected, just hide the modal
+                document.getElementById('selectionModal').style.display = 'none';
+            } else {
+                // For job providers, redirect to rozgarhub
+                window.location.href = url;
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('selectionModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Join Us Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const joinUsLink = document.querySelector('a[href="#join-us"]');
+            const modal = document.getElementById('joinUsModal');
+            const closeBtn = document.querySelector('.close-modal');
+            const joinForm = document.getElementById('joinForm');
+
+            joinUsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.style.display = 'block';
+            });
+
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function(e) {
+                if (e.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            joinForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                
+                // Here you would typically send the data to your server
+                console.log('Form submitted:', { name, email });
+                
+                // Show success message and close modal
+                alert('Thank you for joining! We will contact you soon.');
+                modal.style.display = 'none';
+                joinForm.reset();
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html> 
