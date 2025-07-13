@@ -198,12 +198,8 @@ Emergency and support services platform:
 
 ## Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## Contact
-For any queries or support, please contact [contact information]
+For any queries or support, please contact Aman Abhik amnrocks3012@gmail.com
 
 ## Acknowledgments
 - Font Awesome for icons
